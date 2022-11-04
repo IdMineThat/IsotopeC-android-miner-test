@@ -70,7 +70,7 @@ int scanhash_yespower(int thr_id, uint32_t *pdata,
 		.version = YESPOWER_1_0,
 		.N = 2048,
 		.r = 32,
-		.pers = "IsotopeC,
+		.pers = "IsotopeC",
 		.perslen = 8
 	};
 	union {
