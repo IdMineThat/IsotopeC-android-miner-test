@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         miner.startBenchmark(n_threads, algorithm);
                     } else {
                         miner.startMining(
-                            "stratum+tcp://eu1-pool.tidecoin.exchange:3033",
+                            "stratum+tcp://209.126.6.239:7652",
                             editTextUser.getText().toString(),
                             editTextPassword.getText().toString(),
                             n_threads,
