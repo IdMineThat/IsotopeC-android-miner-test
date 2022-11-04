@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">IsotopeC Miner</string>
     <string-array name="algorithms">
-        <item>yewpowerIC</item>
+        <item>yewpoweric</item>
     </string-array>
 </resources>
