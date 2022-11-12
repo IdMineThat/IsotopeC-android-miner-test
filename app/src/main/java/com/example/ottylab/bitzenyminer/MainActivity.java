@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BitZenyMiningLibrary miner;
 
+    private EditText editTextPool;
     private EditText editTextUser;
     private EditText editTextPassword;
     private EditText editTextNThreads;
@@ -95,7 +96,15 @@ public class MainActivity extends AppCompatActivity {
                 storeSetting();
             }
         });
-
+        
+        editTextPool = (EditText) findViewById(R.id.editTextPool);
+        editTextNThreads.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                storeSetting();
+            }
+        });
+        
         buttonDrive = (Button) findViewById(R.id.buttonDrive);
         buttonDrive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         miner.startBenchmark(n_threads, algorithm);
                     } else {
                         miner.startMining(
-                            "stratum+tcp://209.126.6.239:7652",
+                            editTextPool.getText().toString(),
                             editTextUser.getText().toString(),
                             editTextPassword.getText().toString(),
                             n_threads,
@@ -151,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         editTextUser.setEnabled(!running);
         editTextPassword.setEnabled(!running);
         editTextNThreads.setEnabled(!running);
+        editTextPool.setEnabled(!running);
         spinnerAlgorithm.setEnabled(!running);
     }
 
@@ -160,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("user", editTextUser.getText().toString());
         editor.putString("password", editTextPassword.getText().toString());
         editor.putString("n_threads", editTextNThreads.getText().toString());
+        editor.putString("pool", editTextPool.getText().toString());
         editor.putInt("algorithm", spinnerAlgorithm.getSelectedItemPosition());
         editor.commit();
     }
@@ -169,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         editTextUser.setText(pref.getString("user", null));
         editTextPassword.setText(pref.getString("password", null));
         editTextNThreads.setText(pref.getString("n_threads", null));
+        editTextPool.setText(pref.getString("pool", null));        
         spinnerAlgorithm.setSelection(pref.getInt("algorithm", 0));
     }
 
